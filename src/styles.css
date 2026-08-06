@@ -202,7 +202,7 @@
   }
 }
 
-@utility btn-onDark {
+@utility btn-on-dark {
   background: color-mix(in oklab, var(--background) 100%, transparent);
   color: var(--primary);
   &:hover {
