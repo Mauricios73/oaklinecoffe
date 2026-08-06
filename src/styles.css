@@ -62,26 +62,33 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --radius: 0.75rem;
+  --background: oklch(0.972 0.014 84);
+  --foreground: oklch(0.245 0.032 45);
+  --card: oklch(0.988 0.008 84);
+  --card-foreground: oklch(0.245 0.032 45);
+  --popover: oklch(0.988 0.008 84);
+  --popover-foreground: oklch(0.245 0.032 45);
+  --primary: oklch(0.315 0.048 42);
+  --primary-foreground: oklch(0.972 0.014 84);
+  --secondary: oklch(0.93 0.024 84);
+  --secondary-foreground: oklch(0.315 0.048 42);
+  --muted: oklch(0.94 0.018 84);
+  --muted-foreground: oklch(0.505 0.028 55);
+  --accent: oklch(0.605 0.132 45);
+  --accent-foreground: oklch(0.985 0.01 84);
+  --leaf: oklch(0.455 0.055 148);
+  --leaf-foreground: oklch(0.975 0.012 148);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: oklch(0.885 0.022 78);
+  --input: oklch(0.885 0.022 78);
+  --ring: oklch(0.605 0.132 45);
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Karla", system-ui, sans-serif;
+  --shadow-warm: 0 18px 40px -24px oklch(0.315 0.048 42 / 0.45);
+  --shadow-lift: 0 24px 60px -28px oklch(0.315 0.048 42 / 0.55);
+  --gradient-warm: linear-gradient(160deg, oklch(0.315 0.048 42), oklch(0.245 0.032 45));
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -95,6 +102,15 @@
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
+}
+
+@theme inline {
+  --color-leaf: var(--leaf);
+  --color-leaf-foreground: var(--leaf-foreground);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --shadow-warm: var(--shadow-warm);
+  --shadow-lift: var(--shadow-lift);
 }
 
 .dark {
@@ -140,5 +156,71 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
   }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+}
+
+@utility btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.85rem 1.6rem;
+  transition: transform 0.15s ease, background-color 0.2s ease, color 0.2s ease;
+  &:hover {
+    transform: translateY(-1px);
+  }
+}
+
+@utility btn-primary {
+  background: var(--accent);
+  color: var(--accent-foreground);
+  box-shadow: var(--shadow-warm);
+  &:hover {
+    background: color-mix(in oklab, var(--accent) 88%, black);
+  }
+}
+
+@utility btn-secondary {
+  background: transparent;
+  color: var(--primary);
+  border: 1.5px solid color-mix(in oklab, var(--primary) 30%, transparent);
+  &:hover {
+    background: color-mix(in oklab, var(--primary) 8%, transparent);
+  }
+}
+
+@utility btn-on-dark {
+  background: color-mix(in oklab, var(--background) 100%, transparent);
+  color: var(--primary);
+  &:hover {
+    background: color-mix(in oklab, var(--background) 88%, black);
+  }
+}
+
+@utility section-pad {
+  padding-block: 4rem;
+  @media (min-width: 768px) {
+    padding-block: 6rem;
+  }
+}
+
+@utility eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
 }
