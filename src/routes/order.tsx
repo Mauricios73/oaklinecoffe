@@ -39,7 +39,7 @@ function OrderPage() {
   const [mode, setMode] = useState<"pickup" | "delivery">("pickup");
   const [cart, setCart] = useState<Record<string, { price: number; qty: number }>>({});
   const [placed, setPlaced] = useState(false);
-  const [category, setCategory] = useState(menu[0].category);
+  const [category, setCategory] = useState(menu[0]?.category ?? "");
 
   const items = menu.find((g) => g.category === category)?.items ?? [];
   const total = useMemo(
